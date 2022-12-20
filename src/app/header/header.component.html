@@ -1,0 +1,50 @@
+<!-- Header Navbar code starts -->
+<div class="header">
+  <ul class="navbar">
+    <li><a href="#" class="logo-link">
+        <img src="./assets/logo5.png" class="logo" />
+      </a></li>
+    <li class="search-filter">
+      <select id="searchFilters" class='form-select' #mySelect (change)='showMoviesBySelectedFilter(mySelect.value)'>
+        <option value="filter" selected>Filter By</option>
+        <option class='option' *ngFor='let option of movieCategories' [value]="option">{{option}}</option>
+      </select>
+    </li>
+    <li>
+      <input #movieName id="search-txtbox" type="Search" [(ngModel)]="enteredSearchValue"
+        (input)="onSearchTextChanged()" class="form-control ds-input search-input" placeholder="Search..." required>
+    </li>
+    <li class="contact"><a routerLink="contact">Contact</a></li>
+
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Share</a>
+      <div class="dropdown-content">
+        <a href="https://www.facebook.com/sharer.php?u=https://www.youtube.com/watch?v={{socialShareVideoId}}&t=2s"
+          target="_blank">
+          <span class="fab fa-facebook" id="facebook"></span>
+        </a>
+        <a href="http://twitter.com/share?text=text&url=https://www.youtube.com/watch?v={{socialShareVideoId}}&t=2s&hashtags=movie"
+          target="_blank">
+          <span class="fab fa-twitter"></span>
+        </a>
+        <a href="http://pinterest.com/pin/create/button/?url=https://www.youtube.com/watch?v={{socialShareVideoId}}&t=2s&description=Movie Trailer"
+          target="_blank">
+          <span class="fab fa-pinterest"></span>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=&text=https://www.youtube.com/watch?v={{socialShareVideoId}}&t=2s"
+          target="_blank">
+          <span class="fab fa-whatsapp" id="whatsapp"></span>
+        </a>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.youtube.com/watch?v={{socialShareVideoId}}&t=2s"
+          target="_blank">
+          <span class="fab fa-instagram" id="instagram"></span>
+        </a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.youtube.com/watch?v={{socialShareVideoId}}"
+          target="_blank">
+          <span class="fab fa-linkedin" id="linkedin"></span>
+        </a>
+      </div>
+    </li>
+  </ul>
+</div>
+<!-- Header Navbar code ends -->

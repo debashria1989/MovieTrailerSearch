@@ -1,0 +1,512 @@
+<div *ngIf="!(router.url.includes('contact') || router.url.includes('thankyou'))">
+  <app-header (searchTextChanged)="onSearchTextEntered($event)"
+      (searchFilter) = "onSearchFilterSelect($event)"
+      [searchText]="searchText"
+      [topMoviesFromIMDB]="topMoviesFromIMDB"
+      [videosfromYoutube]="videosfromYoutube"></app-header>
+     
+  <!--Home Page Default content starts-->
+  <div class="home-default-content" 
+    *ngIf='!searchText && !showActionMovies && 
+    !showDramaMovies && !showCrimeMovies &&
+    !showThrillerMovies && !showRomanticMovies &&
+    !showComedyMovies && !showAnimationMovies && !showAdventureMovies'>
+
+    <app-banner></app-banner>
+
+    <!--IMDB Top Movies Card-->
+    <div class="homepage-imdb-top-movies">
+      <h2 class="top-movies">IMDB Top Movies</h2>
+
+      <!-- IMDB Top Movies Carousel begins-->
+
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div #cardwrapper1 class="cards-wrapper">
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[0].trailer}}">
+                  <img src="{{topMoviesFromIMDB[0].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[0].title}}</p>
+                </div>
+              </div>
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[1].trailer}}">
+                  <img src="{{topMoviesFromIMDB[1].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[1].title}}</p>
+                </div>
+              </div>
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[2].trailer}}">
+                  <img src="{{topMoviesFromIMDB[2].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[2].title}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div #cardwrapper2 class="cards-wrapper">
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[3].trailer}}">
+                  <img src="{{topMoviesFromIMDB[3].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[3].title}}</p>
+                </div>
+              </div>
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[4].trailer}}">
+                  <img src="{{topMoviesFromIMDB[4].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[4].title}}</p>
+                </div>
+              </div>
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[5].trailer}}">
+                  <img src="{{topMoviesFromIMDB[5].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[5].title}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div #cardwrapper3 class="cards-wrapper">
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[6].trailer}}">
+                  <img src="{{topMoviesFromIMDB[6].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[6].title}}</p>
+                </div>
+              </div>
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[7].trailer}}">
+                  <img src="{{topMoviesFromIMDB[7].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[7].title}}</p>
+                </div>
+              </div>
+              <div class="card">
+                <a href="{{topMoviesFromIMDB[2].trailer}}">
+                  <img src="{{topMoviesFromIMDB[8].image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{topMoviesFromIMDB[8].title}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <!---IMDB Top Movies Carousel Ends-->
+    </div>
+    <!--IMDB Top Movies Card-->
+
+    <!--IMDB Action Movies Card-->
+    <div class="homepage-imdb-action-movies-card">
+      <h2 class="top-movies">Trending Action Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let actionMovie of actionMoviesFromIMDB | slice:0:3; let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{actionMovie.trailer}}">
+              <img src="{{actionMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{actionMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <!--IMDB Action Movies Card ends -->
+
+    <!--IMDB Drama Movies Card-->
+    <div class="homepage-imdb-drama-movies-card">
+      <h2 class="top-movies">Trending Drama Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let dramaMovie of dramaMoviesFromIMDB | slice:0:3; let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{dramaMovie.trailer}}">
+              <img src="{{dramaMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{dramaMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <!--IMDB drama Movies Card ends -->
+
+    <!--IMDB Crime Movies Card-->
+    <div class="homepage-imdb-crime-movies-card">
+      <h2 class="top-movies">Trending Crime Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let crimeMovie of crimeMoviesFromIMDB | slice:0:3; let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{crimeMovie.trailer}}">
+              <img src="{{crimeMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{crimeMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <!--IMDB Crime Movies Card ends -->
+
+    <!--IMDB Thriller Movies Card-->
+    <div class="homepage-imdb-thriller-movies-card">
+      <h2 class="top-movies">Trending Thriller Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let thrillerMovie of thrillerMoviesFromIMDB | slice:0:3; let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{thrillerMovie.trailer}}">
+              <img src="{{thrillerMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{thrillerMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <!--IMDB Thriller Movies Card ends -->
+
+    <!--IMDB Romantic Movies Card-->
+    <div class="homepage-imdb-romantic-movies-card">
+      <h2 class="top-movies">Trending Romantic Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let romanticMovie of romanticMoviesFromIMDB | slice:0:3; let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{romanticMovie.trailer}}">
+              <img src="{{romanticMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{romanticMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <!--IMDB Romantic Movies Card ends -->
+
+    <!--IMDB Comedy Movies Card-->
+    <div class="homepage-imdb-comedy-movies-card">
+      <h2 class="top-movies">Trending Comedy Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let comedyMovie of comedyMoviesFromIMDB | slice:0:3; let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{comedyMovie.trailer}}">
+              <img src="{{comedyMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{comedyMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <!--IMDB Comedy Movies Card ends -->
+
+    <!--IMDB Animation Movies Card-->
+    <div class="homepage-imdb-animated-movies-card">
+      <h2 class="top-movies">Trending Animation Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let animatedMovie of animatedMoviesFromIMDB | slice:0:3; let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{animatedMovie.trailer}}">
+              <img src="{{animatedMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{animatedMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <!--IMDB Animation Movies Card ends -->
+
+    <!--IMDB Adventure Movies Card-->
+    <div class="homepage-imdb-adventure-movies-card">
+      <h2 class="top-movies">Trending Adventure Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let adventureMovie of adventureMoviesFromIMDB | slice:0:3; let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{adventureMovie.trailer}}">
+              <img src="{{adventureMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{adventureMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <!--IMDB Adventure Movies Card ends -->
+  </div>
+  <!--Home Page Default content ends-->
+  
+  <!--Home Page content with Movie Search Filters -->
+  <div class="home-search-filter-content">
+
+    <!-- Results for Search Filter Action Movies starts -->
+    <div *ngIf="showActionMovies && !showDramaMovies &&
+        !showCrimeMovies && !showThrillerMovies &&
+        !showRomanticMovies && !showComedyMovies &&
+        !showAnimationMovies && !showAdventureMovies" class="action-movies">
+    <h2 class="top-movies">Showing {{actionMoviesFromIMDB.length}} Results for Action Movies</h2>
+    <!--IMDB Action Movies Card-->
+    <div class="moviesContainer">
+      <span *ngFor="let actionMovie of actionMoviesFromIMDB let i=index">
+        <div class="card movieCard">
+          <a class="card-img-top" href="{{actionMovie.trailer}}">
+            <img src="{{actionMovie.image}}" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">{{actionMovie.title}}</h5>
+          </div>
+        </div>
+      </span>
+    </div>
+    </div>
+    <!-- Results for Search Filter Action Movies ends -->
+
+    <!-- Results for Search Filter Drama Movies starts -->
+    <div *ngIf="!showActionMovies && showDramaMovies &&
+    !showCrimeMovies && !showThrillerMovies &&
+    !showRomanticMovies && !showComedyMovies &&
+    !showAnimationMovies && !showAdventureMovies" class="drama-movies">
+      <h2 class="top-movies">Showing {{dramaMoviesFromIMDB.length}} Results for Drama Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let dramaMovie of dramaMoviesFromIMDB let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{dramaMovie.trailer}}">
+              <img src="{{dramaMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{dramaMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+      </div>
+      <!-- Results for Search Filter Drama Movies ends -->
+
+      <!-- Results for Search Filter Crime Movies starts -->
+    <div *ngIf="!showActionMovies && !showDramaMovies &&
+        showCrimeMovies && !showThrillerMovies &&
+        !showRomanticMovies && !showComedyMovies &&
+        !showAnimationMovies && !showAdventureMovies" class="crime-movies">
+      <h2 class="top-movies">Showing {{crimeMoviesFromIMDB.length}} Results for Crime Movies</h2>
+      <div class="moviesContainer">
+        <span *ngFor="let crimeMovie of crimeMoviesFromIMDB let i=index">
+          <div class="card movieCard">
+            <a class="card-img-top" href="{{crimeMovie.trailer}}">
+              <img src="{{crimeMovie.image}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{crimeMovie.title}}</h5>
+            </div>
+          </div>
+        </span>
+      </div>
+      </div>
+      <!-- Results for Search Filter Crime Movies ends -->
+
+    <!-- Results for Search Filter Thriller Movies starts -->
+    <div *ngIf="!showActionMovies && !showDramaMovies &&
+    !showCrimeMovies && showThrillerMovies &&
+    !showRomanticMovies && !showComedyMovies &&
+    !showAnimationMovies && !showAdventureMovies" class="crime-movies">
+  <h2 class="top-movies">Showing {{thrillerMoviesFromIMDB.length}} Results for Thriller Movies</h2>
+  <div class="moviesContainer">
+    <span *ngFor="let thrillerMovie of thrillerMoviesFromIMDB let i=index">
+      <div class="card movieCard">
+        <a class="card-img-top" href="{{thrillerMovie.trailer}}">
+          <img src="{{thrillerMovie.image}}" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">{{thrillerMovie.title}}</h5>
+        </div>
+      </div>
+    </span>
+  </div>
+  </div>
+  <!-- Results for Search Filter Thriller Movies ends -->
+
+      <!-- Results for Search Filter Romantic Movies starts -->
+      <div *ngIf="!showActionMovies && !showDramaMovies &&
+      !showCrimeMovies && !showThrillerMovies &&
+      showRomanticMovies && !showComedyMovies &&
+      !showAnimationMovies && !showAdventureMovies" class="romantic-movies">
+    <h2 class="top-movies">Showing {{thrillerMoviesFromIMDB.length}} Results for Romantic Movies</h2>
+    <div class="moviesContainer">
+      <span *ngFor="let romanticMovie of romanticMoviesFromIMDB let i=index">
+        <div class="card movieCard">
+          <a class="card-img-top" href="{{romanticMovie.trailer}}">
+            <img src="{{romanticMovie.image}}" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">{{romanticMovie.title}}</h5>
+          </div>
+        </div>
+      </span>
+    </div>
+    </div>
+    <!-- Results for Search Filter Romantic Movies ends -->
+
+      <!-- Results for Search Filter Comedy Movies starts -->
+          <div *ngIf="!showActionMovies && !showDramaMovies &&
+          !showCrimeMovies && !showThrillerMovies &&
+          !showRomanticMovies && showComedyMovies &&
+          !showAnimationMovies && !showAdventureMovies" class="romantic-movies">
+        <h2 class="top-movies">Showing {{comedyMoviesFromIMDB.length}} Results for Comedy Movies</h2>
+        <div class="moviesContainer">
+          <span *ngFor="let comedyMovie of comedyMoviesFromIMDB let i=index">
+            <div class="card movieCard">
+              <a class="card-img-top" href="{{comedyMovie.trailer}}">
+                <img src="{{comedyMovie.image}}" class="card-img-top" alt="...">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{comedyMovie.title}}</h5>
+              </div>
+            </div>
+          </span>
+        </div>
+        </div>
+        <!-- Results for Search Filter Romantic Movies ends -->
+
+        
+      <!-- Results for Search Filter Animation Movies starts -->
+      <div *ngIf="!showActionMovies && !showDramaMovies &&
+      !showCrimeMovies && !showThrillerMovies &&
+      !showRomanticMovies && !showComedyMovies &&
+      showAnimationMovies && !showAdventureMovies" class="animation-movies">
+    <h2 class="top-movies">Showing {{animatedMoviesFromIMDB.length}} Results for Animation Movies</h2>
+    <div class="moviesContainer">
+      <span *ngFor="let animatedMovie of animatedMoviesFromIMDB let i=index">
+        <div class="card movieCard">
+          <a class="card-img-top" href="{{animatedMovie.trailer}}">
+            <img src="{{animatedMovie.image}}" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">{{animatedMovie.title}}</h5>
+          </div>
+        </div>
+      </span>
+    </div>
+    </div>
+    <!-- Results for Search Filter Animation Movies ends -->
+
+      <!-- Results for Search Filter Adventure Movies starts -->
+      <div *ngIf="!showActionMovies && !showDramaMovies &&
+      !showCrimeMovies && !showThrillerMovies &&
+      !showRomanticMovies && !showComedyMovies &&
+      !showAnimationMovies && showAdventureMovies" class="animation-movies">
+    <h2 class="top-movies">Showing {{adventureMoviesFromIMDB.length}} Results for Adventure Movies</h2>
+    <div class="moviesContainer">
+      <span *ngFor="let adventureMovie of adventureMoviesFromIMDB let i=index">
+        <div class="card movieCard">
+          <a class="card-img-top" href="{{adventureMovie.trailer}}">
+            <img src="{{adventureMovie.image}}" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">{{adventureMovie.title}}</h5>
+          </div>
+        </div>
+      </span>
+    </div>
+    </div>
+    <!-- Results for Search Filter Adventure Movies ends -->
+
+</div>
+  <!--Home Page content with Movie Search Filters ends-->
+
+  <!--Search Results-->
+  <div class="home-search-results-content" *ngIf="searchText">
+  <!-- IMDB Search Results Code Starts -->
+  <div class="results-container">
+    <!--IMDB Top Results-->
+    <h2 id="imdb-search-results" class="top-movies-search">Top Results From IMDB</h2>
+
+    <div *ngFor="let movie of topMoviesFromIMDB" class="imdb-results-container">
+      <div class="imdb-videos-container" *ngIf="movie.title.toLowerCase().includes(searchText.toLowerCase())">
+        <div class="imdb-videos">
+          <youtube-player videoId="{{movie.trailer.substr(movie.trailer.lastIndexOf('/')+1)}}"
+            suggestedQuality="highres" [height]="250" [width]="500">
+          </youtube-player>
+        </div>
+        <div class="imdb-movie-info">
+          <h2 class="font-weight-bold">{{movie.title}}</h2>
+          <span>{{movie.year}}</span>
+          <p class="movie-desc">{{movie.description}}</p>
+          <ul class="extra-info">
+            <li class="movie-rating"><span class="font-weight-bold">IMDB Rating : </span>{{movie.rating}}</li>
+            <li>
+              <span class="font-weight-bold">Director : </span>
+              {{movie.director}}
+            </li>
+            <li>
+              <span class="font-weight-bold">Writers : </span>
+              {{movie.writers}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="no-results" *ngIf="!searchedMovieExists()">
+      Sorry, No results found !!
+    </div>
+  </div>
+  <!-- IMDB Search Results Code Ends -->
+
+  <!-- YouTube Video Search Result starts-->
+  <div class="results-container">
+    <h2 id="youtube-search-results" class="top-movies-search">Top 5 Results From YouTube</h2>
+    <div *ngFor="let video of videosfromYoutube" class="youtube-results-container">
+      <div class="youtube-videos-container">
+        <div class="youtube-videos">
+          <youtube-player videoId="{{video.id.videoId}}" suggestedQuality="highres" [height]="250" [width]="500">
+          </youtube-player>
+        </div>
+        <div class="youtube-movie-info">
+          <h2 class="font-weight-bold">{{video.snippet.title}}</h2>
+          <p>
+            <span class="font-weight-bold">Channel Title: </span>
+            {{video.snippet.channelTitle}}
+          </p>
+          <p class="movie-desc">{{video.snippet.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- YouTube Video Search Result ends -->
+  </div>
+  <!--Search Results end-->
+
+  <app-footer></app-footer>

@@ -1,0 +1,41 @@
+<!--Contact form starts -->
+<a href="#">
+  <img src="./assets/logo3.png" class="logo contact-page-logo" />
+</a>
+<form class="contact-form" action="#">
+  <div class="justify-content-center">
+    <h3 class="font-weight-bold contact-us">Contact Us</h3>
+  </div>
+  <!-- Name input -->
+  <div class="form-outline mb-4">
+    <input type="text" id="form4Example1" class="form-control" placeholder="Name" />
+  </div>
+
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <input type="email" id="form4Example2" class="form-control" placeholder="Email address" />
+  </div>
+
+  <!-- Contact no. input -->
+  <div class="form-outline mb-4">
+    <input type="text" id="form4Example2" class="form-control" placeholder="Contact No." />
+  </div>
+
+  <!-- Contact no. input -->
+  <div class="form-outline mb-4">
+    <input type="text" id="form4Example2" class="form-control" placeholder="Movie Name" />
+  </div>
+
+  <!-- Message input -->
+  <div class="form-outline mb-4">
+    <textarea class="form-control" id="form4Example3" rows="4" placeholder="Tell us how we can do better..."></textarea>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4 contact-btn" [routerLink]="['/thankyou']">
+    Request for trailer
+  </button>
+</form>
+<!---Contact form ends --->
+<app-footer></app-footer>
+<router-outlet></router-outlet>
